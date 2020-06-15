@@ -18,7 +18,7 @@ public interface IDataStore {
     boolean isPresent(String key);
 
 
-    default void initUser (String username, String password, IPublicStore pks) throws UserAlreadyExists, IOException, IllegalBlockSizeException, InvalidKeyException, BadPaddingException, NoSuchAlgorithmException, NoSuchPaddingException {
+    default User initUser (String username, String password, IPublicStore pks) throws UserAlreadyExists, IOException, IllegalBlockSizeException, InvalidKeyException, BadPaddingException, NoSuchAlgorithmException, NoSuchPaddingException {
         boolean alreadyExists = pks.isPresent(username);
         if (alreadyExists) throw new UserAlreadyExists(username + " already exists. Try new username");
         pks.publicStoreSet(username,new byte[0]);
@@ -30,6 +30,8 @@ public interface IDataStore {
         String dataStoreKey = HashFunctions.hashSHA256(password+username);  // need to update this
 
         dataStoreSet(dataStoreKey, userEnc);
+
+        return newUser;
     }
 
     default User getUser (String username, String password, IPublicStore pks) throws InvalidUsername, NoSuchAlgorithmException, InvalidPassword {

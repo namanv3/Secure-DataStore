@@ -12,10 +12,22 @@ public class UserService {
     }
 
     public User addUser(String username, String password) throws Exception {
-        return ds.initUser(username,password,ps);
+        User newUser;
+        try {
+            newUser = ds.initUser(username,password,ps);
+        } catch (UserAlreadyExists e) {
+            return null;
+        }
+        return newUser;
     }
 
     public User getUser(String username, String password) throws Exception {
-        return ds.getUser(username,password,ps);
+        User newUser;
+        try {
+            newUser = ds.getUser(username,password,ps);
+        } catch (InvalidUsername | InvalidPassword e) {
+            return null;
+        }
+        return newUser;
     }
 }

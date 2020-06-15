@@ -9,14 +9,19 @@ public class UserController {
         get("/users", (req,res) -> {
             String username = req.queryParams("username");
             String password = req.queryParams("password");
-            return userService.getUser(username, password);
+            var user = userService.getUser(username, password);
+            if (user != null) return user;
+            res.status(400);
+            return new ResponseError("Incorrect credentials. Please check your username and password.");
         }, JsonUtil.json());
 
         post("/users", (req, res) -> {
             String username = req.queryParams("username");
             String password = req.queryParams("password");
-            System.out.println("username is " + username + ". password is " + password + ".\n\n\n\n\n\n\n");
-            return userService.addUser(username, password);
+            var user = userService.addUser(username, password);
+            if (user != null) return user;
+            res.status(400);
+            return new ResponseError("A user with id " + username + " already exists. Please choose another username.");
         }, JsonUtil.json());
 
         after((req, res) -> res.type("application/json"));

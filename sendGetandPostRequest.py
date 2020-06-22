@@ -1,7 +1,7 @@
 import requests
 from sys import argv
 
-URL = "http://localhost:4567/users"
+URL = "http://192.168.64.4:80/users"
 
 PARAMS = {
 	"username": argv[2],

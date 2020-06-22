@@ -3,6 +3,8 @@ import apicontrol.UserService;
 
 public class Main {
     public static void main(String[] args) {
-        new UserController(new UserService(args[0], Integer.parseInt(args[1]), "gDrive"));
+        String hostURL = System.getenv("MONGODB_HOST");
+        int hostPort = Integer.parseInt(System.getenv("MONGODB_PORT"));
+        new UserController(new UserService(hostURL, hostPort, "gDrive"));
     }
 }

@@ -11,8 +11,8 @@ import java.util.Iterator;
 public class MongoDBPublicStore implements IPublicStore {
     private final MongoCollection<Document> collection;
 
-    public MongoDBPublicStore (String platform) {
-        MongoClient mongoClient = new MongoClient("localhost",27017);
+    public MongoDBPublicStore (String url, int port, String platform) {
+        MongoClient mongoClient = new MongoClient(url, port);
         MongoDatabase database = mongoClient.getDatabase(platform);
         collection = database.getCollection("PublicStore");
     }

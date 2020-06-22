@@ -6,9 +6,9 @@ public class UserService {
     private final IDataStore ds;
     private final IPublicStore ps;
 
-    public UserService(String company) {
-        ds = new MongoDBDataStore(company);
-        ps = new MongoDBPublicStore(company);
+    public UserService(String url, int port, String company) {
+        ds = new MongoDBDataStore(url,port,company);
+        ps = new MongoDBPublicStore(url,port,company);
     }
 
     public User addUser(String username, String password) throws Exception {

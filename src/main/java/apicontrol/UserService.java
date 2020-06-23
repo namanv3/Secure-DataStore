@@ -30,4 +30,8 @@ public class UserService {
         }
         return newUser;
     }
+
+    public IDataStore getDs() {
+        return ds;
+    }
 }

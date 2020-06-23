@@ -10,7 +10,10 @@ public class UserController {
             String username = req.queryParams("username");
             String password = req.queryParams("password");
             var user = userService.getUser(username, password);
-            if (user != null) return new UserResponseObject(user);
+            if (user != null) {
+                new FileController(new FileService(userService.getDs(), user));
+                return new UserResponseObject(user);
+            }
             res.status(400);
             return new ResponseError("Incorrect credentials. Please check your username and password.");
         }, JsonUtil.json());

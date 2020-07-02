@@ -14,7 +14,7 @@ spec:
         spec:
             containers:
                 - name: api
-                  image: namanv3/connection-api
+                  image: namanv3/connection-api:1.0.1
                   ports:
                       - containerPort: 4567
                   env:

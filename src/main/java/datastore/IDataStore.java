@@ -54,7 +54,7 @@ public interface IDataStore {
         return null;
     }
 
-    private String generateFileEncryptionKey() {
+    default String generateFileEncryptionKey() {
         int length = 40;
         byte[] array = new byte[length];
         new Random().nextBytes(array);

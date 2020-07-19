@@ -1,7 +1,7 @@
 import requests
 from sys import argv
 
-URL = "http://192.168.64.4:80/users"
+URL = "http://localhost:4567/users"
 
 PARAMS = {
 	"username": argv[2],
@@ -15,3 +15,22 @@ else:
 	response = requests.get(url = URL, params = PARAMS)
 	data = response.json()
 	print(data)
+	while True:
+		code = input("1 for adding file, 2 for getting file: ")
+		if code == "1":
+			filename = input("Enter filename: ")
+			data = input("Enter data: ")
+			newParams = {
+				"filename": filename,
+				"data": data
+			}
+			response = requests = requests.post(url = (URL + "/" + argv[2]), params = newParams)
+			print(response.text)
+		elif code == "2":
+			filename = input("Enter filename: ")
+			newParams = {
+				"filename": filename
+			}
+			response = requests.get(url = (URL + "/" + argv[2]), params = newParams)
+			data = response.json()
+			print(data)

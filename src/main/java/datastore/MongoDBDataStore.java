@@ -12,8 +12,8 @@ import java.util.Iterator;
 public class MongoDBDataStore implements IDataStore {
     private final MongoCollection<Document> collection;
 
-    public MongoDBDataStore(String platform) {
-        MongoClient mongoClient = new MongoClient("localhost",27017);
+    public MongoDBDataStore(String url, int port, String platform) {
+        MongoClient mongoClient = new MongoClient(url, port);
         MongoDatabase database = mongoClient.getDatabase(platform);
         collection = database.getCollection("DataStore");
     }

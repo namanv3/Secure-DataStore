@@ -26,7 +26,7 @@ else:
 				"filename": filename,
 				"data": data
 			}
-			response = requests = requests.post(url = (URL + "/" + argv[2]), params = newParams)
+			response = requests.post(url = (URL + "/" + argv[2]), params = newParams)
 			print(response.text)
 		elif code == "2":
 			filename = input("Enter filename: ")

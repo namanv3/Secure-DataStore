@@ -15,6 +15,8 @@ else:
 	response = requests.get(url = URL, params = PARAMS)
 	data = response.json()
 	print(data)
+	if "username" not in data:
+	    exit(1)
 	while True:
 		code = input("1 for adding file, 2 for getting file: ")
 		if code == "1":
